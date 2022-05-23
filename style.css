@@ -1,0 +1,1046 @@
+/* Зробити без плажки для хедера бургер */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Merriweather:wght@400;700&family=Roboto&display=swap');
+
+/* font-family: ;
+font-family: 'Merriweather', serif;
+font-family: 'Roboto', sans-serif; */
+/* Обнулення стилів */
+*,
+*::after,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  line-height: 1;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: #fff;
+  background-color: #000;
+  line-height: 2;
+}
+
+/* щоб не був доступний скрол по сайту, коли відкрите бургер меню */
+body._lock {
+  overflow: hidden;
+}
+
+.wrapper {
+  overflow: hidden;
+  /*Щоб не було горизонтального скролу*/
+  display: flex;
+  /*Для того, щоб підвал був прижатий вниз*/
+  flex-direction: column;
+  min-height: 100%;
+  /*Щоб оболонка займала мінімум всю висоту екрану*/
+}
+
+/* -------------------------------- */
+.ibg {
+  position: relative;
+  z-index: -1;
+}
+
+.ibg img {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+.ibg .hero__img {
+  height: 910px;
+}
+
+.ibg .contact__image {
+  height: 700px;
+}
+
+@media (max-width: 768px) {
+  .ibg .hero__img {
+    height: 590px;
+  }
+
+  .ibg .contact__image {
+    height: 600px;
+  }
+}
+
+@media (max-width: 590px) {
+  .ibg .hero__img {
+    height: 475px;
+  }
+}
+
+@media (max-width: 520px) {
+  .ibg .contact__image {
+    height: 479.8px;
+  }
+}
+
+/* -------------------------Buttons Utilites---------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  transition: color 0.3s ease;
+}
+
+.btn:hover {
+  color: #fff;
+}
+
+/* ------------------------------------------------------ */
+/* 
+---------------------------------------------------------- */
+/* будь-який об'єкт в якого в класі є наступний запис буде застосовано наступні стилі */
+/* Селектор атрибуту */
+[class*='__container'] {
+  max-width: 1440px;
+  margin: 0px auto;
+  padding: 0px 20px;
+}
+
+/* -------------Utilites------------------ */
+.section {
+  padding-top: 100px;
+}
+
+.title-block {
+  position: relative;
+  margin: 0 auto 60px;
+  width: calc(364px + (700 - 364) * ((100vw - 768px) / (1440 - 768)));
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section__title {
+  position: relative;
+  font-size: calc(32px + (40 - 32) * ((100vw - 768px) / (1440 - 768)));
+  /*Зробити чутливий адаптив тайтла*/
+  font-weight: 700;
+  font-family: 'Merriweather', serif;
+  color: #bdae82;
+  display: inline-block;
+  padding: 0 20px;
+  background-color: #000;
+}
+
+.title-block::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  height: 2px;
+  width: 100%;
+  background-color: #bdae82;
+}
+
+.title-block::before {
+  left: 0;
+  top: 50%;
+}
+
+@media (max-width: 1097px) {
+  .section {
+    padding-top: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: 60px;
+  }
+
+  .section__title {
+    font-size: calc(30px + (32 - 30) * ((100vw - 320px) / (768 - 320)));
+    padding-left: calc(10px + (20 - 10) * ((100vw - 320px) / (768 - 320)));
+    padding-right: calc(10px + (20 - 10) * ((100vw - 320px) / (768 - 320)));
+  }
+
+  .title-block {
+    width: calc(260px + (364 - 260) * ((100vw - 320px) / (768 - 320)));
+    margin: 0 auto 36px;
+  }
+}
+
+@media (max-width: 700px) {
+  .title-block {
+    height: 60px;
+  }
+}
+
+@media (max-width: 500px) {
+  .section {
+    padding-top: 40px;
+  }
+}
+
+/* ===============Header========================= */
+.header__container {
+  min-height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  position: relative;
+  z-index: 10;
+  transition: all 0.3s ease 0s;
+}
+
+.header__logo:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+}
+
+.menu__list {
+  display: flex;
+  gap: 30px;
+  margin-left: auto;
+  padding: 0 32.1px;
+}
+
+.menu__link {
+  line-height: 2.5;
+  transition: color 0.3s ease 0s;
+}
+
+.menu__link:hover {
+  color: #bdae82;
+}
+
+.change-language {
+  font-weight: 700;
+}
+
+.change-language-link {
+  line-height: 2.5;
+  transition: color 0.3s ease 0s;
+}
+
+.change-language span {
+  margin: 0 7.75px 0 6px;
+}
+
+.lang-active {
+  color: #bdae82;
+}
+
+.burger-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* burger no touched */
+  .burger-icon {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 28px;
+    width: 50px;
+  }
+
+  .burger-icon span {
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+    transition: all 0.5s ease;
+  }
+
+  .burger-icon::before,
+  .burger-icon::after {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    transition: all 0.5s ease;
+  }
+
+  /* burger touched */
+  .burger-icon._active span {
+    transform: scale(0);
+  }
+
+  .burger-icon._active::before {
+    transform: translateY(12px) rotate(135deg);
+  }
+
+  .burger-icon._active::after {
+    transform: translateY(-12px) rotate(-135deg);
+  }
+
+  .menu__list::before {
+    content: '';
+    position: fixed;
+    width: 70%;
+    top: 0;
+    right: -200%;
+    height: 90px;
+    background-color: #000;
+    z-index: 7;
+    transition: all 0.4s ease;
+  }
+
+  /* Запам'ятати, що спочатку потрібно вказати клас ектів, а аж потім псевдоклас */
+  .menu__list._active::before {
+    right: 0;
+  }
+
+  .menu__list {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    height: 100%;
+    background-color: #000;
+    padding: 134px 0px 30px 127px;
+    padding-right: calc(120px + (343 - 120) * ((100vw - 320px) / (768 - 320)));
+    transition: all 0.4s ease;
+    overflow: auto;
+    /*щоб був скрол, коли меню буде мати малу висоту і не будуть поміщатись всі елементи бургер меню*/
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 5;
+  }
+
+  .menu__list._active {
+    right: 0;
+  }
+
+  /* ----------------------------------------------------- */
+  .menu__link {
+    font-size: 35px;
+  }
+
+  .change-language {
+    margin: 0 20px 0 auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .menu__list {
+    padding: 120px 0 30px 80px;
+  }
+}
+
+@media (max-width: 590px) {
+  .menu__list {
+    gap: 5px;
+    padding: 90px 60px 30px;
+  }
+}
+
+@media (max-width: 510px) {
+  .menu__list {
+    width: 100%;
+    padding: 80px 0 30px;
+    align-items: center;
+  }
+
+  .menu__list::before {
+    width: 100%;
+  }
+}
+
+/* ---------------------HERO--------------------------- */
+.hero-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.hero__container {
+  padding: 160px 0px 330px 60px;
+}
+
+.hero__content {
+  max-width: 470px;
+}
+
+.hero__title {
+  font-family: 'Merriweather', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.hero__text {
+  margin-bottom: 25px;
+}
+
+.hero__btn {
+  padding: 7.5px 0;
+  color: #000;
+  background-color: #bdae82;
+}
+
+/* Кнопка для перемотування на верх сайту */
+.to-top {
+  background-color: rgba(189, 174, 130, 0.9);
+  position: fixed;
+  z-index: 10;
+  bottom: 16px;
+  right: 32px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  /*щоб не було можливості випадково нажати на невидиму кнопку */
+  transition: all 0.4s ease;
+}
+
+.to-top:hover {
+  background-color: #000;
+  border: 2px solid #bdae82;
+}
+
+.to-top::before,
+.to-top::after {
+  content: '';
+  height: 3px;
+  width: 15px;
+  background-color: #000;
+  position: absolute;
+  top: 47%;
+  transition: all 0.3s ease 0s;
+}
+
+.to-top:hover::before,
+.to-top:hover::after {
+  background-color: #bdae82;
+  width: 13px;
+}
+
+.to-top::before {
+  left: 13px;
+  transform: rotate(-45deg);
+}
+
+.to-top::after {
+  right: 13px;
+  transform: rotate(45deg);
+}
+
+@media (max-width: 768px) {
+  .to-top {
+    right: 20px;
+  }
+}
+
+/* Коли два класи ідуть підряд, тоді ці стилі будуть тому елементу, який має їх обох */
+.to-top.active {
+  bottom: 32px;
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* -------------------------------------- */
+@media (max-width: 768px) {
+  .hero__container {
+    padding: 78px 20px 151px;
+  }
+
+  .hero__title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .hero__text {
+    line-height: 1.2;
+    margin-bottom: 60px;
+  }
+
+  .hero__content {
+    max-width: 390px;
+  }
+}
+
+@media (max-width: 590px) {
+  .header__container {
+    min-height: 70px;
+  }
+
+  .menu__list::before {
+    height: 70px;
+  }
+
+  .hero__container {
+    padding: 60px 20px 100px;
+  }
+
+  .hero__content {
+    max-width: 300px;
+  }
+
+  .hero__text {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 365px) {
+  .hero__content {
+    max-width: 240px;
+  }
+
+  .hero__container {
+    padding: 60px 20px 80px;
+  }
+}
+
+/* ------------------------------------- */
+
+/* ----------------------------Skills------------------- */
+.skills__items {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  column-gap: 40px;
+}
+
+.skills__item {
+  min-width: 200px;
+  text-align: center;
+  padding: 0 20px 8px;
+}
+
+.item__image {
+  margin-bottom: calc(30px + (50 - 30) * ((100vw - 768px) / (1440 - 768)));
+}
+
+.item__title {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.item__text {
+  text-align: center;
+  max-width: 280px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+@media (max-width: 1097px) {
+  .item__text {
+    line-height: 1.5;
+  }
+
+  .skills__items {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1049px) {
+  .skills__items {
+    justify-content: center;
+    grid-template-columns: repeat(2, auto);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills__items {
+    column-gap: 44px;
+    row-gap: 36px;
+    padding: 9px 0 30px;
+  }
+
+  .skills__item {
+    padding: 0px 10px 40.8px;
+  }
+
+  .item__text {
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 750px) {
+  .item__text {
+    max-width: 240px;
+  }
+}
+
+@media (max-width: 660px) {
+  .item__text {
+    font-size: 16px;
+    max-width: 195px;
+  }
+
+  .skills__items {
+    gap: 25px;
+  }
+}
+
+@media (max-width: 580px) {
+  .skills__items {
+    grid-template-columns: repeat(1, auto);
+    gap: 25px;
+    padding: 9px 0 0;
+  }
+
+  .skills__item {
+    padding: 0 10px 30px;
+  }
+
+  .item__title {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+}
+
+/* ------------------------------------------------------ */
+/* ------------Portfolio------------------- */
+.portfolio__season-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+  max-width: 895px;
+  grid-gap: 5px;
+  margin: 0 auto 60px;
+}
+
+/* -------- Власний варіант кнопки без використання бічних падінгів ------------- */
+.portfolio-btn {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  width: 220px;
+  padding: 5.5px 0;
+  color: #bdae82;
+  border: 2px solid #bdae82;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.portfolio-btn-active {
+  color: #000;
+  background-color: #bdae82;
+}
+
+.portfolio-btn:hover {
+  color: #fff;
+}
+
+.portfolio__season-works {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.portfolio__photo {
+  width: 100%;
+}
+
+@media (max-width: 965px) {
+  .portfolio__season-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 445px;
+  }
+
+  .portfolio__season-works {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio__season-works {
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+  }
+
+  .portfolio__photo {
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 630px) {
+  .portfolio__season-buttons {
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0 auto 40px;
+    gap: 10px;
+  }
+
+  .season-btn {
+    padding: 0;
+    width: 160px;
+  }
+
+  .portfolio__season-works {
+    gap: 15px;
+  }
+}
+
+/* ---------------------------------------- */
+/* -----------Video------------------- */
+.video-block {
+  position: relative;
+}
+
+.video-image {
+  object-fit: cover;
+  width: 100%;
+}
+
+.video-btn-link {
+  position: absolute;
+  left: 45.42%;
+  top: 40.85%;
+  z-index: 5;
+}
+
+.video-btn {
+  width: calc(65px + (130 - 65) * ((100vw - 768px) / (1440 - 768)));
+  min-width: 40px;
+  transition: all 0.3s ease;
+}
+
+.video-btn:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+}
+
+@media (max-width: 768px) {
+  .video__container {
+    padding: 0;
+  }
+
+  .video-image {
+    min-height: 290px;
+    object-position: 10% 50%;
+  }
+}
+
+/* ----------------------------------- */
+/* -----------------------Price------------------ */
+.price {
+  padding-bottom: 100px;
+}
+
+.price__items {
+  display: flex;
+  gap: 25px;
+}
+
+.price__item {
+  flex: 0 1 33.333%;
+  border: 3px solid #bdae82;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.price__item-title {
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'Merriweather', serif;
+  margin-bottom: 20px;
+}
+
+.price__item-cost {
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Merriweather', serif;
+  margin-bottom: 20px;
+}
+
+.price__item-services {
+  margin-bottom: 40px;
+}
+
+.services {
+  font-size: 18px;
+}
+
+@media (max-width: 950px) and (min-width: 850px) {
+  .price__items {
+    gap: 10px;
+  }
+
+  .price__item {
+    padding: 20px 0;
+  }
+}
+
+@media (max-width: 850px) {
+  .price__items {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 850px) and (min-width: 768px) {
+  .price__item {
+    padding: 40px 0;
+    width: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .price__item {
+    width: 58.59%;
+  }
+
+  .price {
+    padding-bottom: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .price__items {
+    gap: 15px;
+  }
+
+  .price__item {
+    padding: 20px 0;
+    width: 65%;
+  }
+
+  .price__item-title {
+    margin-bottom: 10px;
+  }
+
+  .price__item-cost {
+    margin-bottom: 10px;
+  }
+
+  .price__item-services {
+    margin-bottom: 20px;
+  }
+
+  .price {
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 450px) {
+  .price__item {
+    padding: 10px 0 20px;
+    width: 68%;
+    border: 2px solid #bdae82;
+  }
+
+  .price__item-title {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+
+  .price__item-cost {
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+
+  .price__item-services {
+    margin-bottom: 15px;
+  }
+
+  .services {
+    font-size: 14px;
+  }
+
+  .price-btn {
+    padding: 2px 0;
+    width: 150px;
+    font-size: 16px;
+  }
+
+  .price {
+    padding-bottom: 40px;
+  }
+}
+
+/* ---------------------------------------------- */
+/* -------------------Contact--------------------- */
+.contact {
+  position: relative;
+}
+
+.contact__container {
+  padding: 60px 15px 195px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact__body {
+  flex: 0 1 450px;
+}
+
+.contact__title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #bdae82;
+  font-family: 'Merriweather', serif;
+  margin-bottom: 40px;
+}
+
+.form-el {
+  width: 100%;
+  padding: 3px 20px;
+  border: 2px solid #bdae82;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 20px;
+  line-height: 2;
+}
+
+.contact__text {
+  resize: none;
+  margin-bottom: 18px;
+  min-height: 100px;
+  font-size: 20px;
+  font-family: inherit;
+}
+
+.min-el {
+  margin-bottom: 20px;
+}
+
+::placeholder {
+  color: #bdae82;
+}
+
+.contact__bg-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 1130px) {
+  .contact__image {
+    object-position: 20% 50%;
+  }
+}
+
+@media (max-width: 850px) {
+  .contact__container {
+    justify-content: center;
+  }
+
+  .contact__body {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact__container {
+    padding: 60px 15px 111px;
+  }
+
+  .contact__title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 520px) {
+  .contact__container {
+    padding: 30px 15px 50px;
+  }
+
+  .contact__title {
+    font-size: 30px;
+  }
+
+  .min-el {
+    margin-bottom: 15px;
+  }
+
+  .form-el {
+    font-size: 18px;
+  }
+
+  .contact__text {
+    margin-bottom: 10px;
+  }
+}
+
+/* ----------------------------------------------- */
+/* -------------------Footer-------------------- */
+.footer__container {
+  padding: 28px 15px;
+  min-height: 190px;
+}
+
+.footer__content {
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footer__social {
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.footer__social img:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+}
+
+@media (min-width: 768px) {
+  .footer__content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+  }
+
+  .footer__container {
+    min-height: 150px;
+    padding: 50px 15px;
+    align-items: center;
+  }
+}
+
+/* ----------------------------------------------- */
